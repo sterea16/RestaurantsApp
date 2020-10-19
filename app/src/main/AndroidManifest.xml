@@ -18,7 +18,10 @@
             </intent-filter>
 
         </activity>
-        <activity android:name="com.example.restaurantsApplication.restaurants.RestaurantsActivity"/>
+        <activity android:name="com.example.restaurantsApplication.restaurants.RestaurantsActivity"
+                    android:theme="@style/AppTheme">
+
+        </activity>
 
     </application>
 

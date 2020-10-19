@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="padding_16">16dp</dimen>
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="min_height_item">64dp</dimen>
+    <dimen name="list_item_icon_size">100dp</dimen>
+    <dimen name="title_size">20sp</dimen>
+    <dimen name="subtitle_size">16sp</dimen>
+    <dimen name="list_item_min_height">64dp</dimen>
+
+</resources>

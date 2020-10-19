@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Restaurants Application</string>
+    <string name="splash_screen"> Splash screen example</string>
+    <string name="item_title">The Clink Restaurant</string>
+    <string name="random_description">This is a random text random text here random text here random text here random text here</string>
+    <string name="item_img_content_description">This is a random description</string>
 </resources>

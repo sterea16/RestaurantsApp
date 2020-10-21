@@ -6,18 +6,17 @@
     android:layout_height="wrap_content"
     android:minHeight="@dimen/min_height_item">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/list_item_icon"
         android:layout_width="@dimen/list_item_icon_size"
         android:layout_height="@dimen/list_item_icon_size"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:src="@android:drawable/sym_def_app_icon"
         android:scaleType="centerCrop"
         android:padding="@dimen/padding_16"
         android:contentDescription="@string/item_img_content_description" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/list_item_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -31,7 +30,7 @@
         app:layout_constraintStart_toEndOf="@+id/list_item_icon"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/list_item_subTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

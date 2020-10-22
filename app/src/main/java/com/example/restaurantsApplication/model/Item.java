@@ -1,21 +1,27 @@
 package com.example.restaurantsApplication.model;
 
 public class Item {
-    private int icon;
     private String title;
     private String subtitle;
+    private String icon;
+    private String[] photos;
 
-    public Item(int icon, String title, String subtitle) {
+    public Item(String title, String subtitle, String icon, String[] photos) {
         this.icon = icon;
         this.title = title;
         this.subtitle = subtitle;
+        this.photos = photos;
     }
 
-    public int getIcon() {
+    public Item(String icon){
+        this.icon = icon;
+    }
+
+    public String getIcon() {
         return icon;
     }
 
-    public void setIcon(int icon) {
+    public void setIcon(String icon) {
         this.icon = icon;
     }
 
@@ -35,4 +41,7 @@ public class Item {
         this.subtitle = subtitle;
     }
 
+    public String[] getPhotos() {
+        return photos;
+    }
 }

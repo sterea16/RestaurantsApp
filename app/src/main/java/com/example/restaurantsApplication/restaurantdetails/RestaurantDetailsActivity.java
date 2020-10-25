@@ -7,7 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
-import com.example.restaurantsApplication.ItemAdapter;
+import com.example.restaurantsApplication.util.ItemAdapter;
 import com.example.restaurantsApplication.R;
 
 import java.util.Objects;
@@ -50,6 +50,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         ItemAdapter itemAdapter = new ItemAdapter(photos, this, true);
+        itemAdapter.setViewHolderLayoutProvider(() -> R.layout.item_photo);
         recyclerView.setAdapter(itemAdapter);
     }
 

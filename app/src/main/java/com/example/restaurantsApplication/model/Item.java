@@ -1,16 +1,43 @@
 package com.example.restaurantsApplication.model;
 
-public class Item {
-    private String title;
-    private String subtitle;
-    private String icon;
-    private String[] photos;
 
-    public Item(String title, String subtitle, String icon, String[] photos) {
-        this.icon = icon;
-        this.title = title;
-        this.subtitle = subtitle;
-        this.photos = photos;
+import com.google.gson.annotations.SerializedName;
+
+public class Item {
+
+    /*This class represents a single element inside a JsonArray which is within another JsonArray*/
+    private static class NestedPhoto {
+
+        @SerializedName("imagePath")
+        private String imagePath;
+
+        public String getImagePath() {
+            return imagePath;
+        }
+    }
+
+    @SerializedName("name")
+    private String title;
+
+    @SerializedName("description")
+    private String description;
+
+    @SerializedName("imagePath")
+    private String icon;
+
+    @SerializedName("photos")
+    private NestedPhoto[] nestedPhotoArray;
+
+    private String[] photoArray;
+
+    public void createPhotoArray(){
+        photoArray = new String[nestedPhotoArray.length];
+        for(int i = 0; i < nestedPhotoArray.length; ++i)
+            photoArray[i] = nestedPhotoArray[i].getImagePath();
+    }
+
+    public void setPhotoArray(String[] photoArray) {
+        this.photoArray = photoArray;
     }
 
     public Item(String icon){
@@ -33,15 +60,24 @@ public class Item {
         this.title = title;
     }
 
-    public String getSubtitle() {
-        return subtitle;
+    public String getDescription() {
+        return description;
     }
 
-    public void setSubtitle(String subtitle) {
-        this.subtitle = subtitle;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String[] getPhotos() {
-        return photos;
+    public String[] getPhotoArray() {
+        return photoArray;
     }
+
+    public NestedPhoto[] getNestedPhotoArray() {
+        return nestedPhotoArray;
+    }
+
+    public void setNestedPhotoArray(NestedPhoto[] nestedPhotoArray) {
+        this.nestedPhotoArray = nestedPhotoArray;
+    }
+
 }

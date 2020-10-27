@@ -21,7 +21,6 @@ public class ServerProvider {
         return retrofit.create(RestaurantsService.class);
     }
 
-
     private static OkHttpClient getOkHttpClient(){
         HttpLoggingInterceptor httpLoggingInterceptor = getHttpLoggingInterceptor();
         return new OkHttpClient.Builder().addInterceptor(httpLoggingInterceptor).build();
@@ -32,6 +31,7 @@ public class ServerProvider {
         httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         return httpLoggingInterceptor;
     }
+
     private ServerProvider(){
     }
 }

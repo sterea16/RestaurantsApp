@@ -27,6 +27,7 @@ import java.util.Objects;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.internal.EverythingIsNonNull;
 
 public class RestaurantsActivity extends AppCompatActivity {
 
@@ -36,6 +37,7 @@ public class RestaurantsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurants);
         getWindow().setAllowEnterTransitionOverlap(false);
@@ -61,23 +63,22 @@ public class RestaurantsActivity extends AppCompatActivity {
         Call<ArrayList<Item>> call = restaurantsService.getItems();
         call.enqueue(new Callback<ArrayList<Item>>() {
             @Override
+            @EverythingIsNonNull
             public void onResponse(Call<ArrayList<Item>> call, Response<ArrayList<Item>> response) {
                 if(!response.isSuccessful())
                     return;
 
                 items = new ArrayList<>();
                 items = response.body();
-                for(Item i : Objects.requireNonNull(items))
-                    i.createPhotoArray();
 
                 runOnUiThread(() -> {
                     progressBar.setVisibility(View.GONE);
                     setAdapter();
                 });
-
             }
 
             @Override
+            @EverythingIsNonNull
             public void onFailure(Call<ArrayList<Item>> call, Throwable t) {
                 t.getMessage();
             }
@@ -86,19 +87,13 @@ public class RestaurantsActivity extends AppCompatActivity {
     }
 
     private void setAdapter(){
-        ItemAdapter itemAdapter = new ItemAdapter(items, getBaseContext(), false);
+        ItemAdapter itemAdapter = new ItemAdapter(items, getBaseContext());
         itemAdapter.setOnClickListener(position -> {
             Item item = items.get(position);
-            String title = item.getTitle();
-            String description = item.getDescription();
-            String[] photos = item.getPhotoArray();
             Intent i = new Intent(RestaurantsActivity.this, RestaurantDetailsActivity.class);
-            i.putExtra(RestaurantDetailsActivity.TITLE_KEY, title)
-                    .putExtra(RestaurantDetailsActivity.DESCRIPTION_KEY, description)
-                    .putExtra(RestaurantDetailsActivity.PHOTO_ARRAY_KEY, photos);
+            i.putExtra(RestaurantDetailsActivity.ITEM_KEY, item);
             startActivity(i);
         });
-        itemAdapter.setViewHolderLayoutProvider(() -> R.layout.item_restaurant);
 
         recyclerView.setAdapter(itemAdapter);
     }

@@ -12,23 +12,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/maps_api_key"/>
+
         <activity
             android:name=".SplashScreen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+        </activity>
+        <activity
+            android:name=".restaurants.RestaurantsActivity"
+            android:theme="@style/SplashTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".restaurants.RestaurantsActivity"
-            android:theme="@style/AppTheme" />
 
         <activity
             android:name=".restaurantdetails.RestaurantDetailsActivity"
             android:label="@string/restaurants_label"
-            android:parentActivityName=".restaurants.RestaurantsActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
     </application>
 

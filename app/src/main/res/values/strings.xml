@@ -10,5 +10,6 @@
     <string name="dialog_subtitle">Failed to load data.</string>
     <string name="dialog_exit">Exit</string>
     <string name="photo_content_description">Photo </string>
+    <string name="favorite">favorite</string>
 
 </resources>

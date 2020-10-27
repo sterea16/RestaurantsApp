@@ -3,10 +3,12 @@ package com.example.restaurantsApplication.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Item {
+import java.io.Serializable;
+
+public class Item implements Serializable {
 
     /*This class represents a single element inside a JsonArray which is within another JsonArray*/
-    private static class NestedPhoto {
+    public static class NestedPhoto implements Serializable{
 
         @SerializedName("imagePath")
         private String imagePath;
@@ -25,20 +27,15 @@ public class Item {
     @SerializedName("imagePath")
     private String icon;
 
+    @SerializedName("latitude")
+    private double latitude;
+
+    @SerializedName("longitude")
+    private double longitude;
+
     @SerializedName("photos")
     private NestedPhoto[] nestedPhotoArray;
 
-    private String[] photoArray;
-
-    public void createPhotoArray(){
-        photoArray = new String[nestedPhotoArray.length];
-        for(int i = 0; i < nestedPhotoArray.length; ++i)
-            photoArray[i] = nestedPhotoArray[i].getImagePath();
-    }
-
-    public void setPhotoArray(String[] photoArray) {
-        this.photoArray = photoArray;
-    }
 
     public Item(String icon){
         this.icon = icon;
@@ -68,10 +65,6 @@ public class Item {
         this.description = description;
     }
 
-    public String[] getPhotoArray() {
-        return photoArray;
-    }
-
     public NestedPhoto[] getNestedPhotoArray() {
         return nestedPhotoArray;
     }
@@ -80,4 +73,19 @@ public class Item {
         this.nestedPhotoArray = nestedPhotoArray;
     }
 
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
 }

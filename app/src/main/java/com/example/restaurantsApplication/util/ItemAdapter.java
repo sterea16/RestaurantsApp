@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -19,55 +18,46 @@ import java.util.List;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder>{
 
+    private final Context context;
     private List<Item> items;
-    private Context context;
-    private boolean forDetailsActivity;
-    private OnClickListener listener;
-    private ViewHolderLayoutProvider viewHolderLayoutProvider;
     private String[] photos;
+    private OnClickListener listener;
 
-    public ItemAdapter(List<Item> items, Context context, boolean isDetailsActivity){
+    public ItemAdapter(List<Item> items, Context context){
         this.items = items;
         this.context = context;
-        this.forDetailsActivity = isDetailsActivity;
     }
 
-    public ItemAdapter(String[] photos, Context context, boolean forDetailsActivity){
+    public ItemAdapter(String[] photos, Context context){
         this.context = context;
         this.photos = photos;
-        this.forDetailsActivity = forDetailsActivity;
     }
 
     public interface OnClickListener{
         void onClick(int position);
     }
 
-    public interface ViewHolderLayoutProvider {
-        @LayoutRes
-        int getLayoutRes();
-    }
-
     public void setOnClickListener(OnClickListener listener) {
         this.listener = listener;
-    }
-
-    public void setViewHolderLayoutProvider(ViewHolderLayoutProvider layoutProvider){
-        viewHolderLayoutProvider = layoutProvider;
     }
 
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        int layoutRes = viewHolderLayoutProvider.getLayoutRes();
-        View view = LayoutInflater.from(parent.getContext()).inflate(layoutRes, parent, false);
-        return new ItemViewHolder(view, forDetailsActivity);
+        View view;
+        if(photos != null) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_photo, parent, false);
+        } else {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_restaurant, parent, false);
+        }
+        return new ItemViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, final int position) {
-        if(forDetailsActivity){
-            Glide.with(context).load(photos[position]).into(holder.photo);
-            holder.photo.setContentDescription(context.getResources().getString(R.string.photo_content_description) + (position + 1));
+        if(photos != null){
+            Glide.with(context).load(photos[position]).into(holder.photoView);
+            holder.photoView.setContentDescription(context.getResources().getString(R.string.photo_content_description) + (position + 1));
         } else {
             Item item = items.get(position);
             holder.title.setText(item.getTitle());
@@ -82,23 +72,23 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemViewHolder
 
     @Override
     public int getItemCount() {
-        if(forDetailsActivity)
+        if(photos != null)
             return photos.length;
         return items.size();
     }
 
-    public static class ItemViewHolder extends RecyclerView.ViewHolder{
+    public class ItemViewHolder extends RecyclerView.ViewHolder{
         private AppCompatImageView icon;
         private AppCompatTextView title;
         private AppCompatTextView subtitle;
-        private AppCompatImageView photo;
-        private View root;
+        private AppCompatImageView photoView;
+        private final View root;
 
-        public ItemViewHolder(@NonNull View itemView, boolean requireItemPhoto) {
+        public ItemViewHolder(@NonNull View itemView) {
             super(itemView);
             root = itemView;
-            if(requireItemPhoto){
-                photo = itemView.findViewById(R.id.details_photo_imageView);
+            if(photos != null){
+                photoView = itemView.findViewById(R.id.details_photo_imageView);
             } else {
                 icon = itemView.findViewById(R.id.list_item_icon);
                 title = itemView.findViewById(R.id.list_item_title);

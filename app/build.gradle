@@ -11,6 +11,12 @@ android {
         versionCode 1
         versionName "1.0"
 
+        def secureProp = new Properties()
+        if (file("../secure.properties").exists()){
+            file("../secure.properties")?.withInputStream { secureProp.load(it) }
+        }
+        resValue "string", "maps_api_key", (secureProp.getProperty("MAPS_API_KEY") ?: "")
+
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -30,7 +36,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    implementation "com.google.android.gms:play-services-maps:17.0.0"
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'

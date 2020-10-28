@@ -16,7 +16,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
         android:layout_width="wrap_content"
@@ -26,8 +25,8 @@
 
     <com.google.android.gms.maps.MapView
         android:id="@+id/maps"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="@dimen/match_constraints"
+        android:layout_height="@dimen/match_constraints"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,14 +35,14 @@
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/match_constraints"
+        android:paddingStart="@dimen/padding_16"
+        android:paddingEnd="@dimen/padding_16"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline"
-        android:paddingStart="@dimen/padding_16"
-        android:paddingEnd="@dimen/padding_16">
+        app:layout_constraintTop_toTopOf="@+id/guideline">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -52,19 +51,19 @@
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/details_title_textView"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                android:layout_height="@dimen/match_constraints"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:paddingTop="@dimen/padding_16"
-                tools:text="This is a header"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@tools:sample/last_names"/>
 
             <View
                 android:id="@+id/separator_view_1"
                 android:layout_width="match_parent"
-                android:layout_height="0.5dp"
+                android:layout_height="@dimen/separator_height"
                 android:background="@android:color/darker_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -85,7 +84,7 @@
             <View
                 android:id="@+id/separator_view_2"
                 android:layout_width="match_parent"
-                android:layout_height="0.5dp"
+                android:layout_height="@dimen/separator_height"
                 android:background="@android:color/darker_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -1,14 +1,14 @@
 <resources>
+
     <string name="app_name">Restaurants Application</string>
     <string name="splash_screen"> Splash screen example</string>
-    <string name="item_title">The Clink Restaurant</string>
-    <string name="random_description">This is a random text random text here random text here random text here random text here</string>
     <string name="item_img_content_description">This is a random description</string>
     <string name="restaurants_label">Restaurants</string>
-    <string name="random_text">Pretending I\'\m a google maps view</string>
+
     <string name="dialog_title">No internet connection</string>
     <string name="dialog_subtitle">Failed to load data.</string>
     <string name="dialog_exit">Exit</string>
+
     <string name="photo_content_description">Photo </string>
     <string name="favorite">favorite</string>
 

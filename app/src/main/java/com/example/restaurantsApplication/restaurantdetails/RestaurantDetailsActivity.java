@@ -100,7 +100,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity implements OnMa
     @Override
     public void onMapReady(GoogleMap googleMap) {
         LatLng coordinates = new LatLng(restaurant.getLatitude(),restaurant.getLongitude());
-        final float defZoom = 16f;
+        final float defZoom = 15f;
         googleMap.addMarker(new MarkerOptions().position(coordinates));
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinates, defZoom));
         googleMap.setOnMarkerClickListener(marker -> {

@@ -23,7 +23,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/match_constraints"
         android:layout_weight="0.8"
         android:gravity="center"
         android:text="@string/dialog_subtitle"
@@ -37,14 +37,13 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/exit_textView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/match_constraints"
         android:layout_weight="0.4"
-        android:text="@string/dialog_exit"
         android:gravity="center"
+        android:text="@string/dialog_exit"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
         android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-        android:clickable="true"
-        android:focusable="true"/>
+        style="@style/ClickableView"/>
 
 </LinearLayout>

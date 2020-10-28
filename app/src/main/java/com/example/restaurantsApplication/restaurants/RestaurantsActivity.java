@@ -40,15 +40,8 @@ public class RestaurantsActivity extends AppCompatActivity {
         setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurants);
-        getWindow().setAllowEnterTransitionOverlap(false);
 
-        progressBar = findViewById(R.id.progress_bar);
-        progressBar.setVisibility(View.VISIBLE);
-        recyclerView = findViewById(R.id.recycler_view);
-
-        RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setHasFixedSize(true);
+        initViews();
 
         boolean isConnected = checkInternetConnection();
         if(isConnected) {
@@ -56,6 +49,16 @@ public class RestaurantsActivity extends AppCompatActivity {
         } else {
             showDialog();
         }
+    }
+
+    private void initViews(){
+        progressBar = findViewById(R.id.progress_bar);
+        progressBar.setVisibility(View.VISIBLE);
+        recyclerView = findViewById(R.id.recycler_view);
+
+        RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setHasFixedSize(true);
     }
 
     private void getData() {

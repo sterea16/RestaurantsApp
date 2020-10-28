@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="?android:attr/selectableItemBackground"
-    android:clickable="true"
-    android:focusable="true"
+    style="@style/ClickableView"
     android:minHeight="@dimen/min_height_item">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/list_item_icon"
         android:layout_width="@dimen/list_item_icon_size"
         android:layout_height="@dimen/list_item_icon_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:scaleType="centerCrop"
         android:padding="@dimen/padding_16"
-        android:contentDescription="@string/item_img_content_description" />
+        android:contentDescription="@string/item_img_content_description"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/list_item_title"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/match_constraints"
         android:layout_height="wrap_content"
         android:paddingStart="@dimen/padding_16"
         android:paddingTop="@dimen/padding_16"
@@ -31,11 +30,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/list_item_icon"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="@string/item_title"/>
+        tools:text="@tools:sample/last_names"/>
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/list_item_subTitle"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/match_constraints"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="2"
@@ -46,11 +45,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/list_item_icon"
         app:layout_constraintTop_toBottomOf="@+id/list_item_title"
-        tools:text="@string/random_description"/>
+        tools:text="@tools:sample/lorem/random"/>
     <View
         android:id="@+id/separator_item_restaurant_view"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
+        android:layout_height="@dimen/separator_height"
         android:background="@android:color/darker_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

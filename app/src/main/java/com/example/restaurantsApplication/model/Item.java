@@ -4,19 +4,9 @@ package com.example.restaurantsApplication.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Item implements Serializable {
-
-    /*This class represents a single element inside a JsonArray which is within another JsonArray*/
-    public static class NestedPhoto implements Serializable{
-
-        @SerializedName("imagePath")
-        private String imagePath;
-
-        public String getImagePath() {
-            return imagePath;
-        }
-    }
 
     @SerializedName("name")
     private String title;
@@ -34,8 +24,7 @@ public class Item implements Serializable {
     private double longitude;
 
     @SerializedName("photos")
-    private NestedPhoto[] nestedPhotoArray;
-
+    private ArrayList<ItemPhoto> itemPhotos;
 
     public Item(String icon){
         this.icon = icon;
@@ -65,12 +54,12 @@ public class Item implements Serializable {
         this.description = description;
     }
 
-    public NestedPhoto[] getNestedPhotoArray() {
-        return nestedPhotoArray;
+    public ArrayList<ItemPhoto> getItemPhotos() {
+        return itemPhotos;
     }
 
-    public void setNestedPhotoArray(NestedPhoto[] nestedPhotoArray) {
-        this.nestedPhotoArray = nestedPhotoArray;
+    public void setItemPhotos(ArrayList<ItemPhoto> itemPhotos) {
+        this.itemPhotos = itemPhotos;
     }
 
     public double getLatitude() {

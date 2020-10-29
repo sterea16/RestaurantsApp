@@ -13,8 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.restaurantsApplication.model.Item;
-import com.example.restaurantsApplication.util.ItemAdapter;
 import com.example.restaurantsApplication.R;
+import com.example.restaurantsApplication.model.ItemPhoto;
 import com.example.restaurantsApplication.util.SharedPrefsUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -23,11 +23,13 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+
 public class RestaurantDetailsActivity extends AppCompatActivity implements OnMapReadyCallback {
     public final static String ITEM_KEY = RestaurantDetailsActivity.class.getName() + " ITEM ";
     private String restaurantName;
     private String description;
-    private String[] photoArray;
+    private ArrayList<String> photoPathArray;
     private Item restaurant;
     private MenuItem itemMenu;
 
@@ -47,14 +49,14 @@ public class RestaurantDetailsActivity extends AppCompatActivity implements OnMa
     private void getData(){
         restaurantName = restaurant.getTitle();
         description = restaurant.getDescription();
-        photoArray = getPhotos();
+        photoPathArray = getPhotos();
     }
 
-    public String[] getPhotos(){
-        Item.NestedPhoto[] nestedPhotos = restaurant.getNestedPhotoArray();
-        String[] photos = new String[nestedPhotos.length];
-        for(int i = 0; i < nestedPhotos.length; ++i)
-            photos[i] = nestedPhotos[i].getImagePath();
+    public ArrayList<String> getPhotos(){
+        ArrayList<String> photos = new ArrayList<>();
+        ArrayList<ItemPhoto> nestedPhotos = restaurant.getItemPhotos();
+        for(int i = 0; i < nestedPhotos.size(); ++i)
+            photos.add(i, nestedPhotos.get(i).getImagePath());
         return photos;
     }
 
@@ -85,7 +87,7 @@ public class RestaurantDetailsActivity extends AppCompatActivity implements OnMa
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
 
-        ItemAdapter itemAdapter = new ItemAdapter(photoArray, this);
+        RestaurantDetailsAdapter itemAdapter = new RestaurantDetailsAdapter(photoPathArray, this);
         recyclerView.setAdapter(itemAdapter);
     }
 

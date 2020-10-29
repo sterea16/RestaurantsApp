@@ -15,8 +15,6 @@ public class ServerProvider {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(getOkHttpClient())
                 .build();
-        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
-        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         return retrofit.create(RestaurantsService.class);
     }

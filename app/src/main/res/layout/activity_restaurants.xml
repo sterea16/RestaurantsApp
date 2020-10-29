@@ -18,6 +18,15 @@
         tools:itemCount="15"
         tools:listitem="@layout/item_restaurant"/>
 
+    <TextView
+        android:id="@+id/no_items_textView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:visibility="gone"
+        android:gravity="center"
+        android:text="@string/no_restaurants_available"/>
+
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="@dimen/progress_bar_size"

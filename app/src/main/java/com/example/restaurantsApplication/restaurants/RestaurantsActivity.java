@@ -11,12 +11,13 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.restaurantsApplication.server.RestaurantsService;
 import com.example.restaurantsApplication.server.ServerProvider;
-import com.example.restaurantsApplication.util.ItemAdapter;
 import com.example.restaurantsApplication.R;
 import com.example.restaurantsApplication.model.Item;
 import com.example.restaurantsApplication.restaurantdetails.RestaurantDetailsActivity;
@@ -34,7 +35,8 @@ public class RestaurantsActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private ArrayList<Item> items;
     private RecyclerView recyclerView;
-
+    private TextView noItemsTextView;
+    private final String TAG = "FAILURE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setTheme(R.style.AppTheme);
@@ -55,6 +57,7 @@ public class RestaurantsActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progress_bar);
         progressBar.setVisibility(View.VISIBLE);
         recyclerView = findViewById(R.id.recycler_view);
+        noItemsTextView = findViewById(R.id.no_items_textView);
 
         RecyclerView.LayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -74,23 +77,28 @@ public class RestaurantsActivity extends AppCompatActivity {
                 items = new ArrayList<>();
                 items = response.body();
 
-                runOnUiThread(() -> {
+                if(items.isEmpty()){
+                    noItemsTextView.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                } else {
                     progressBar.setVisibility(View.GONE);
                     setAdapter();
-                });
+                }
             }
 
             @Override
             @EverythingIsNonNull
             public void onFailure(Call<ArrayList<Item>> call, Throwable t) {
-                t.getMessage();
+                Log.d(TAG,t.getMessage());
+                noItemsTextView.setVisibility(View.VISIBLE);
+                progressBar.setVisibility(View.GONE);
             }
         });
 
     }
 
     private void setAdapter(){
-        ItemAdapter itemAdapter = new ItemAdapter(items, getBaseContext());
+        RestaurantAdapter itemAdapter = new RestaurantAdapter(items, getBaseContext());
         itemAdapter.setOnClickListener(position -> {
             Item item = items.get(position);
             Intent i = new Intent(RestaurantsActivity.this, RestaurantDetailsActivity.class);

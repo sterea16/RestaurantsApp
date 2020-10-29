@@ -11,5 +11,6 @@
 
     <string name="photo_content_description">Photo </string>
     <string name="favorite">favorite</string>
+    <string name="no_restaurants_available">No restaurants available</string>
 
 </resources>
